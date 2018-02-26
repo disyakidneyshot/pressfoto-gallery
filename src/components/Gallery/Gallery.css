@@ -1,0 +1,16 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  color: black;
+  background-color: white;
+  margin-top: 5vh;
+  padding: 20px;
+  padding-bottom: 10vh;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
