@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import Backdrop from '../Backdrop/Backdrop'
 import Aux from '../../hoc/Auxiliary'
 import './Modal.css'
 
@@ -8,6 +9,7 @@ export default class Modal extends Component {
     render () {
         return (
             <Aux>
+                <Backdrop clicked={this.props.closeModal} show={this.props.show}/>
                 <div 
                     className="Modal"
                     onClick={this.props.closeModal}

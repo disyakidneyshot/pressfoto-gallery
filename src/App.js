@@ -56,13 +56,21 @@ class App extends Component {
   }
 
   closeModalHandler = () => {
+    let className = 'modal-open'
+    document.body.classList.remove(className)
     this.setState({ openModal: false, modalPic: null })
   }
 
-  onModalClickHandler = (image_id) => {
+  onModalIconClickHandler = (image_id) => {
+    let className = 'modal-open'
+    document.body.classList.add(className)
     const modalPicUrl = this.state.data.filter(image => image.item_id === image_id)[0]
     this.setState({ modalPic: modalPicUrl.sample_url, openModal: true })
   }
+
+  // backdropClickHandler = () => {
+  //   this.setState({ openModal: false })
+  // }
 
   render() {
     console.log(this.state.data)
@@ -72,7 +80,7 @@ class App extends Component {
           images={this.state.data} 
           onCheckPhoto={this.onCheckPhoto}
           onDeleteImage={this.deleteHandler}
-          onModalClick={this.onModalClickHandler}/>
+          onModalClick={this.onModalIconClickHandler}/>
         <Nav 
           checkedCount={this.state.checkedCounter} 
           deletePhotos={this.deletePhotosHandler}
@@ -81,7 +89,6 @@ class App extends Component {
           show={this.state.openModal} 
           closeModal={this.closeModalHandler}
           modalPicUrl={this.state.modalPic}>
-          
         </Modal>
       </div>
     );
