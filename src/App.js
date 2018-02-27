@@ -3,19 +3,20 @@ import './App.css';
 import Nav from './components/Nav/Nav'
 import Gallery from './components/Gallery/Gallery'
 import newData from './data.json'
+import Modal from './components/UI/Modal/Modal'
 
 let formattedData = newData.data.items.map((image) => {
   image.isChecked = false
   return image
 })
 
-// console.log(formattedData)
-
 class App extends Component {
 
   state = {
     data: formattedData,
-    checkedCounter: 0
+    checkedCounter: 0,
+    openModal: false,
+    modalPic: null
   }
 
   componentWillUpdate () {
@@ -54,6 +55,15 @@ class App extends Component {
     this.setState({ data: undoCheckedData, checkedCounter: 0 })
   }
 
+  closeModalHandler = () => {
+    this.setState({ openModal: false, modalPic: null })
+  }
+
+  onModalClickHandler = (image_id) => {
+    const modalPicUrl = this.state.data.filter(image => image.item_id === image_id)[0]
+    this.setState({ modalPic: modalPicUrl.sample_url, openModal: true })
+  }
+
   render() {
     console.log(this.state.data)
     return (
@@ -61,11 +71,18 @@ class App extends Component {
         <Gallery 
           images={this.state.data} 
           onCheckPhoto={this.onCheckPhoto}
-          onDeleteImage={this.deleteHandler}/>
+          onDeleteImage={this.deleteHandler}
+          onModalClick={this.onModalClickHandler}/>
         <Nav 
           checkedCount={this.state.checkedCounter} 
           deletePhotos={this.deletePhotosHandler}
           undoCheck={this.undoCheckHandler}/>
+        <Modal 
+          show={this.state.openModal} 
+          closeModal={this.closeModalHandler}
+          modalPicUrl={this.state.modalPic}>
+          
+        </Modal>
       </div>
     );
   }

@@ -60,8 +60,9 @@ class Card extends Component {
 
   const modalBtn = 
           <button
-            className="btn eye-modal">
-            <Icon icon={ICONS.EYE} color={'white'} />
+            className="btn eye-modal"
+            onClick={() => this.props.modalPicHandler(this.props.image.item_id)}>
+            <Icon icon={ICONS.EYE} color={'white'}/>
           </button>  
 
     return (
