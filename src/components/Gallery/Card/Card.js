@@ -40,7 +40,7 @@ class Card extends Component {
         </button>
 
   const otherBtns =
-          <div className="flexed-end">
+          <div className>
             <button 
               className="btn card-btn"
               onClick={() => this.props.onDelete(this.props.image.item_id)}>
@@ -67,27 +67,23 @@ class Card extends Component {
 
     return (
       <div className="col-md-4">
-        <div className="card flexed-col"
+        <div className="card"
           style={{ backgroundImage: `url(${this.props.image.sample_url})` }}
-          onMouseEnter={this.onHover}
+          onMouseOver={this.onHover}
           onMouseLeave={this.onHoverOff}>
           <div className="overlay" style={this.state.isChecked ? { opacity: '0.4' } : null}></div>
-          <div className="row">
-            <div className="col-md-6 flexed-start">
+          <div className="wrapper">
+            <div className="check-btn">
+              {this.state.isChecked ? <div className="bg-circle"></div> : null}            
               {this.state.isChecked || this.state.isHovered ? checkBtn : null}
-              {this.state.isChecked ? <div className="bg-circle"></div> : null}
             </div>
-            <div className="col-md-6">
+            <div className="other-btns">
               {this.state.isHovered ? otherBtns : null}
-            </div>          
-          </div>
-          {/* <div className="row middle-md">
-            <div className="col-md-6 col-md-offset-3 flexed-center"> */}
-          <div className="for-modal-icon">
-            {this.state.isChecked || this.state.isHovered ? modalBtn : null}
-            {this.state.isChecked || this.state.isHovered ? <div className="modal-circle"></div> : null}
-            {/* </div>          
-          </div> */}
+            </div>
+            <div className="modal-btn">
+              {this.state.isChecked || this.state.isHovered ? <div className="modal-circle"></div> : null}
+              {this.state.isChecked || this.state.isHovered ? modalBtn : null}
+            </div>
           </div>
         </div>
       </div>
