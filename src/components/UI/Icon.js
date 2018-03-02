@@ -10,9 +10,9 @@ const icon = (props) => {
     }
     
     return (
-        <svg width="25" height="25" viewBox="0 0 26 26" className="icon">
-            <path d={props.icon} style={styles.path}/>
-        </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" className="icon">
+                <path d={props.icon} style={styles.path}/>
+            </svg>
     )
 }
 
