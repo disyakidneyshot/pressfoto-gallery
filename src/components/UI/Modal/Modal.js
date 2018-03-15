@@ -7,19 +7,20 @@ import './Modal.css'
 export default class Modal extends Component {
 
     render () {
+        const modalClasses = ['Modal', this.props.show ? 'ModalOpened' : 'ModalClosed']
         return (
             <Aux>
                 <Backdrop clicked={this.props.closeModal} show={this.props.show}/>
                 <div 
-                    className="Modal"
-                    onClick={this.props.closeModal}
-                    style={{
-                        // transform: this.props.show ? 'translateY(0%)' : 'translateY(-150%)',
-                        opacity: this.props.show ? '1' : '0',
-                        // backgroundImage: `url(${this.props.modalPicUrl})`
-                    }}>
-                    <img src={this.props.modalPicUrl} className="modal-img"/>
+                    className={modalClasses.join(' ')}>
+                    <img src={this.props.modalPicUrl} className="modal-img" alt="modal-window"/>
                 </div>
+                { this.props.show ?
+                    <div className="close-btn" onClick={this.props.closeModal}>
+                        &times;
+                    </div>
+                    : null
+                }
             </Aux>
         )
     }

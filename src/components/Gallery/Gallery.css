@@ -3,14 +3,52 @@
   margin: 0 auto;
   color: black;
   background-color: white;
-  margin-top: 5vh;
+  margin-top: 20px;
   padding: 20px;
   padding-bottom: 10vh;
 }
 
-.content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+.fade-enter-active {
+  animation: content-enter 300ms ease-out forwards;
 }
 
+.fade-exit-active {
+  animation: content-exit 300ms ease-out forwards;
+}
+
+.fade-appear-active {
+  animation: content-appear 1000ms ease-out forwards;
+}
+
+@keyframes content-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes content-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes content-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-width: 1197px) {
+  .container {
+    max-width: 986px;
+  }
+}

@@ -6,11 +6,14 @@ const icon = (props) => {
     const styles = {
         path: {
             fill: props.color
+        },
+        svg: {
+            size: props.width ? props.width : '24'
         }
     }
     
     return (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" className="icon">
+            <svg width={styles.svg.size} height={styles.svg.size} viewBox={`0 0 ${styles.svg.size} ${styles.svg.size}`} fill="white" className="icon">
                 <path d={props.icon} style={styles.path}/>
             </svg>
     )

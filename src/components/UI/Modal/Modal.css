@@ -1,14 +1,24 @@
 .Modal {
     position: fixed;
     z-index: 500;
-    max-width: 70%;
+    width: 60%;
     box-sizing: border-box;
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out;
     left: 50%;
     top: 50%;
     padding: 0;
     transform: translate(-50%, -50%);
     overflow: auto;
+    border-radius: 0.5%;
+}
+
+.ModalOpened{
+    opacity: 1;
+}
+
+.ModalClosed {
+    opacity: 0;
+    z-index: -100;
 }
 
 .modal-img {
@@ -16,4 +26,15 @@
     height: auto;
     margin: 0;
     display: block;
+}
+
+.close-btn {
+    position: absolute;
+    right: 2%;
+    top: 1%;
+    display: block;
+    color: white;
+    z-index: 1000;
+    font-size: 60px;
+    cursor: pointer;
 }

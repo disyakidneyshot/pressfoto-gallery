@@ -19,8 +19,15 @@ class App extends Component {
     modalPic: null
   }
 
-  componentWillUpdate () {
-    console.log('UPDATED', this.state.data)
+  componentDidMount () {
+    window.addEventListener('keyup', this.handleEscPress, false)
+  }
+
+  handleEscPress = (e) => {
+    if (e.keyCode === 27) {
+      e.preventDefault()
+      this.undoCheckHandler()
+    }
   }
 
   onCheckPhoto = (item_id) => {
@@ -38,8 +45,8 @@ class App extends Component {
 
   deleteHandler = (item_id) => {
     const afterDeletingData = this.state.data.filter(image => image.item_id !== item_id)
-
-    this.setState({ data: afterDeletingData })
+    const newCheckedCounter = afterDeletingData.filter(image => image.isChecked === true).length
+    this.setState({ data: afterDeletingData, checkedCounter: newCheckedCounter })
   }
 
   deletePhotosHandler = () => {
@@ -58,7 +65,10 @@ class App extends Component {
   closeModalHandler = () => {
     let className = 'modal-open'
     document.body.classList.remove(className)
-    this.setState({ openModal: false, modalPic: null })
+    this.setState({ openModal: false })
+    setTimeout(() => {
+      this.setState({ modalPic: null })
+    }, 500)
   }
 
   onModalIconClickHandler = (image_id) => {
@@ -68,15 +78,11 @@ class App extends Component {
     this.setState({ modalPic: modalPicUrl.sample_url, openModal: true })
   }
 
-  // backdropClickHandler = () => {
-  //   this.setState({ openModal: false })
-  // }
-
   render() {
     console.log(this.state.data)
     return (
       <div className="App">
-        <Gallery 
+        <Gallery
           images={this.state.data} 
           onCheckPhoto={this.onCheckPhoto}
           onDeleteImage={this.deleteHandler}
@@ -88,8 +94,7 @@ class App extends Component {
         <Modal 
           show={this.state.openModal} 
           closeModal={this.closeModalHandler}
-          modalPicUrl={this.state.modalPic}>
-        </Modal>
+          modalPicUrl={this.state.modalPic} />
       </div>
     );
   }

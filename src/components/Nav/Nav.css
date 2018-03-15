@@ -1,13 +1,26 @@
 nav {
   position: fixed;
-  top: 92vh;
-  height: 9vh;
-  width: 102%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  bottom: -2px;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
   background-color: white;
   margin: 0;
   padding: 0;
   z-index: 3;
+}
+
+.nav-container {
+  width: 100%;
+  align-items: center;
+}
+
+@media screen and (min-width: 1197px) {
+  .nav-container {
+    max-width: 1200px;
+  }
 }
 
 .flexed-center {
@@ -51,4 +64,14 @@ span.cnt-info {
   color: gray;
   font-size: 13px;
   margin-left: 7px;
+}
+
+.non-visible {
+  display: none;
+}
+
+@media screen and (min-width: 770px) {
+  .non-visible {
+    display: flex;
+  }
 }

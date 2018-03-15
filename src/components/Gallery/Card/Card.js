@@ -2,6 +2,7 @@ import React, { Component }  from 'react'
 import './Card.css'
 import Icon from '../../UI/Icon'
 import { ICONS } from '../../UI/paths'
+// import { CSSTransition } from 'react-transition-group'
 
 class Card extends Component {
 
@@ -36,9 +37,11 @@ class Card extends Component {
         <button 
           className="btn"
           onClick={() => this.onCheck(this.props.image.item_id)}>
-          <Icon 
+          <Icon
             icon={this.state.isChecked ? ICONS.BLANKCIRCLE : ICONS.CIRCLE} 
-            color='white'/>
+            color='white'
+            // width={this.state.isChecked ? '24' : null } 
+            />
           { this.state.isChecked ? 
             <svg style={{ position: 'absolute', top: '14px', left: '20px' }} width="24" height="24"  viewBox="0 0 24 24">
               <path fill="#07f417" d={ICONS.CHECKBOX}/>
@@ -67,13 +70,19 @@ class Card extends Component {
 
   const modalBtn = 
           <button
-            className="btn"
+            className="btn non-visible"
             onClick={() => this.props.modalPicHandler(this.props.image.item_id)}>
             <Icon icon={ICONS.EYE} color={'white'} />
           </button>  
 
     return (
-      <div className="col-md-4">
+      <div className="col-md-4 col-sm-6 col-xs-12">
+      {/* <CSSTransition
+        mountOnEnter
+        unmountOnExit
+        in={this.props.image}
+        timeout={1000}
+        classNames="card-item"> */}
         <div className="card"
           style={{ backgroundImage: `url(${this.props.image.sample_url})` }}
           onMouseOver={this.onHover}
@@ -88,11 +97,12 @@ class Card extends Component {
               {this.state.isHovered ? otherBtns : null}
             </div>
             <div className="modal-btn">
-              {this.state.isChecked || this.state.isHovered ? <div className="modal-circle"></div> : null}
+              {this.state.isChecked || this.state.isHovered ? <div className="modal-circle non-visible"></div> : null}
               {this.state.isChecked || this.state.isHovered ? modalBtn : null}
             </div>
           </div>
         </div>
+      {/* </CSSTransition> */}
       </div>
     )
   }
